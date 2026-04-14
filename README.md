@@ -146,8 +146,8 @@ Ikuti langkah berikut untuk menjalankan project:
 
 1. Clone Repository
 ```bash
-git clone <repo-link>
-cd <project-name>
+git clone https://github.com/Relll06HUB/Project-1-DL.git
+cd Project-1-DL
 ```
 
 2. Install dependensi:
