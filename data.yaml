@@ -1,0 +1,10 @@
+path: filtered_dataset
+
+train: images/train
+val: images/val
+test: images/test
+
+names:
+  0: car
+  1: bus
+  2: truck
