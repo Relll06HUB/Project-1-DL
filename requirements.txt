@@ -1,0 +1,10 @@
+# Core Dependencies
+ultralytics==8.4.33
+torch>=2.0.0
+torchvision>=0.15.0
+
+# Data processing & Visualization
+numpy>=2.0.0
+opencv-python>=4.8.0
+matplotlib>=3.7.0
+PyYAML>=6.0
