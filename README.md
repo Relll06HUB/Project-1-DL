@@ -180,7 +180,7 @@ results = model("images/Test1.jpg", save=True)
 
 **Catatan:**
 - Hasil deteksi akan otomatis tersimpan pada folder `runs/detect/`
-- File input source dapat diganti dengan gambar lain sesuai kenyamanan dan kebutuhan. 
+- File input source dapat diganti dengan gambar lain sesuai kenyamanan dan kebutuhan 
 - Untuk jalankan inferensi dengan beberapa gambar sekaligus, bisa gunakan algoritma list seperti yang dilampirkan berikut ini:
 
 ```python
