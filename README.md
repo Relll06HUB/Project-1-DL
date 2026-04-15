@@ -166,7 +166,7 @@ pip install ultralytics
 3. Menjalankan inferensi menggunakan command line:
 
 ```bash
-yolo task=detect mode=predict model=weights/YOLOv11_finetuned_best.pt source=results/Sample_Detection.jpg
+yolo task=detect mode=predict model=weights/YOLOv11_finetuned_best.pt source=images/Test1.jpg
 ```
 
 4. Menjalankan inferensi menggunakan Python:
@@ -175,10 +175,17 @@ yolo task=detect mode=predict model=weights/YOLOv11_finetuned_best.pt source=res
 from ultralytics import YOLO
 
 model = YOLO("weights/YOLOv11_finetuned_best.pt")
-results = model("results/Sample_Detection.jpg", save=True)
+results = model("images/Test1.jpg", save=True)
 ```
+
 **Catatan:**
-Hasil deteksi akan otomatis tersimpan pada folder `runs/detect/`
+- Hasil deteksi akan otomatis tersimpan pada folder `runs/detect/`
+- File input source dapat diganti dengan gambar lain sesuai kenyamanan dan kebutuhan. 
+- Untuk jalankan inferensi dengan beberapa gambar sekaligus, bisa gunakan algoritma list seperti yang dilampirkan berikut ini:
+
+```python
+results = model(["images/Test1.jpg", "images/Test2.jpg"], save=True) 
+```
 
 ## License
 - Project ini dibuat untuk keperluan akademik dan tidak ditujukan untuk penggunaan komersial
