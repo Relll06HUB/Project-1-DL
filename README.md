@@ -178,10 +178,10 @@ model = YOLO("weights/YOLOv11_finetuned_best.pt")
 results = model("results/Sample_Detection.jpg", save=True)
 ```
 **Catatan:**
-Hasil deteksi akan otomatis tersimpan pada folder `runs/detect/`.
+Hasil deteksi akan otomatis tersimpan pada folder `runs/detect/`
 
 ## License
-- Project ini dibuat untuk keperluan akademik dan tidak ditujukan untuk penggunaan komersial. 
+- Project ini dibuat untuk keperluan akademik dan tidak ditujukan untuk penggunaan komersial
 - Dataset mengikuti lisensi dari sumber aslinya (Kaggle)
 
 ## Video Demo
