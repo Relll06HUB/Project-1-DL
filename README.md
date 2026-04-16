@@ -113,7 +113,7 @@ Berikut merupakan hasil pelatihan dari masing-masing model:
 Note: Eksperimen dilakukan melalui beberapa skenario, yaitu baseline (YOLOv10 dan YOLOv11) serta fine-tuning pada YOLOv11 dengan penyesuaian hyperparameter seperti learning rate, jumlah epoch, dan layer freezing. Proses pelatihan menghasilkan kurva performa (loss, precision, recall, dan mAP) yang digunakan untuk menganalisis proses konvergensi model.
 
 ## Temuan Utama
-- YOLOv11 memberikan akurasi deteksi lebih tinggi (Recall dan mAP)  
+- YOLOv11 memberikan kualitas kinerja deteksi lebih tinggi (Recall dan mAP)  
 - YOLOv10 memiliki kecepatan inferensi sedikit lebih tinggi (FPS)  
 - Proses fine-tuning meningkatkan performa YOLOv11  
 
