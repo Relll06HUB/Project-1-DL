@@ -19,7 +19,7 @@ Tujuan utama adalah menganalisis performa kedua model berdasarkan kualitas kiner
 - Kelas yang digunakan: car, bus, truck  
 - Total gambar setelah pramosresan: 1784
 - Link Akses ke Dataset: https://www.kaggle.com/datasets/saumyapatel/traffic-vehicles-object-detection, 
-atau alternatifnya juga dapat diunduh melalui link google drive berikut ini: https://drive.google.com/drive/folders/1forsZoj3nK9MBxXQA6sQPCwA6AWAMxdG?usp=sharing
+atau alternatifnya juga dapat diunduh melalui link google drive berikut ini: https://drive.google.com/drive/folders/1forsZoj3nK9MBxXQA6sQPCwA6AWAMxdG?usp=sharing (folder TrafficDataset & filtered_dataset)
 
 ## Cara Menggunakan Dataset
 1. Download dataset dari link yang disertakan di atas (dapat pilih salah satu sesuai kebutuhan dan kenyamanan)
