@@ -1,31 +1,31 @@
-# Deteksi Kendaraan Menggunakan YOLOv10 dan YOLOv11
+# Vehicle Detection Using YOLOv10 and YOLOv11
 
-## Gambaran Project
-Proyek ini bertujuan untuk mendeteksi kendaraan besar (mobil, bus, dan truk) di jalan sebagai potensi bahaya lalu lintas menggunakan metode Object Detection berbasis Deep Learning
+## Project Overview
+This project aims to detect large vehicles (cars, buses, and trucks) on the road as potential traffic hazards using Deep Learning-based Object Detection methods.
 
-Dua model yang diimplementasikan dan dibandingkan:
+Two models are implemented and compared:
 - YOLOv10  
 - YOLOv11  
 
-Tujuan utama adalah menganalisis performa kedua model berdasarkan kualitas kinerja deteksi keseluruhan dan efisiensi komputasi.
+The primary goal is to analyze the performance of both models based on overall detection quality and computational efficiency.
 
-## Tujuan
-- Mengimplementasikan YOLOv10 dan YOLOv11 untuk deteksi objek 
-- Membandingkan performa model menggunakan metrik evaluasi yang relevan 
-- Meningkatkan performa model melalui proses fine-tuning  
+## Objectives
+- Implement YOLOv10 and YOLOv11 for object detection  
+- Compare model performance using relevant evaluation metrics  
+- Improve model performance through fine-tuning  
 
 ## Dataset
-- Dataset: Traffic Vehicles Object Detection (Kaggle)  
-- Kelas yang digunakan: car, bus, truck  
-- Total gambar setelah pramosresan: 1784
-- Link Akses ke Dataset: https://www.kaggle.com/datasets/saumyapatel/traffic-vehicles-object-detection, 
-atau alternatifnya juga dapat diunduh melalui link google drive berikut ini: https://drive.google.com/drive/folders/1forsZoj3nK9MBxXQA6sQPCwA6AWAMxdG?usp=sharing (folder TrafficDataset & filtered_dataset)
+- **Dataset:** Traffic Vehicles Object Detection (Kaggle)  
+- **Classes used:** `car`, `bus`, `truck`  
+- **Total images after preprocessing:** 1,784  
+- **Dataset Access Links:** [Kaggle Dataset](https://kaggle.com) or via [Google Drive](https://google.com) (`TrafficDataset` & `filtered_dataset` folders)
 
-## Cara Menggunakan Dataset
-1. Download dataset dari link yang disertakan di atas (dapat pilih salah satu sesuai kebutuhan dan kenyamanan)
-2. Lakukan pramosresan sesuai bagian "Pengolahan Data" (filtering dan oversampling)  
-3. Letakkan dataset hasil pramosresan ke dalam folder berikut:
+## How to Use the Dataset
+1. Download the dataset from either of the links provided above.
+2. Perform preprocessing as described in the **Data Preprocessing** section (filtering and oversampling).  
+3. Place the preprocessed dataset into the following directory structure:
 
+```text
 project/
 │── filtered_dataset/
 
@@ -38,69 +38,69 @@ filtered_dataset/
 │   ├── train/
 │   ├── val/
 │   └── test/
+```
 
-4. Pastikan file `data.yaml` sudah mengarah ke folder `filtered_dataset`
+4. Ensure the `data.yaml` file points to the `filtered_dataset` folder.
 
-**Catatan:** 
-- Dataset yang digunakan dalam training adalah hasil preprocessing yang disimpan dalam folder `filtered_dataset`
-- Dataset yang digunakan pada video demo sama dengan Dataset yang digunakan untuk pelatihan
-- Penambahan link akses dan instruksi penggunaan dataset dilakukan untuk meningkatkan reproducibility project
-- README telah diperbarui untuk meningkatkan kejelasan dokumentasi 
-- Perubahan ini tidak mempengaruhi dataset, model, maupun hasil eksperimen yang ditampilkan pada video demo
-- Dataset telah disesuaikan ke format YOLO (format .txt)
+**Notes:** 
+- The dataset used for training is the preprocessed data stored inside the `filtered_dataset` folder.
+- The dataset shown in the demo video is the same dataset used during model training.
+- Access links and setup instructions are included to improve project reproducibility.
+- The README has been updated to improve documentation clarity.
+- Documentation updates do not affect the dataset, trained models, or experimental results shown in the demo video.
+- Annotations have been converted to standard YOLO format (`.txt`).
 
-## Pengolahan Data
-- Memfilter hanya kelas yang relevan  
-- Melakukan *oversampling* untuk mengatasi ketidakseimbangan data  
-- Pembagian data:
-  - Pelatihan: 70%  
-  - Validasi: 20%  
-  - Pengujian: 10%  
+## Data Preprocessing
+- Filtered only relevant vehicle classes (`car`, `bus`, `truck`)  
+- Applied *oversampling* to address class imbalance  
+- Data split:
+  - Training: 70%  
+  - Validation: 20%  
+  - Testing: 10%  
 
-## Model yang Digunakan
+## Models Used
 - YOLOv10 (Baseline)  
 - YOLOv11 (Baseline)  
 - YOLOv11 (Fine-Tuned)  
 
-## Konfigurasi Pelatihan
-- Epoch: 40 (*baseline*), 50 (*fine-tuned*)  
-- Ukuran gambar: 640x640  
-- Batch size: 4  
-- Perangkat: NVIDIA GTX 1650 Ti  
-- Framework: Ultralytics YOLO  
-- Random seed: 42  
+## Training Configuration
+- **Epochs:** 40 (*baseline*), 50 (*fine-tuned*)  
+- **Image size:** 640x640  
+- **Batch size:** 4  
+- **Hardware:** NVIDIA GTX 1650 Ti  
+- **Framework:** Ultralytics YOLO  
+- **Random seed:** 42  
 
-## Strategi Fine-Tuning
+## Fine-Tuning Strategy
 
-Pada model YOLOv11, dilakukan proses fine-tuning untuk meningkatkan performa deteksi. Penyesuaian yang dilakukan meliputi:
+For the YOLOv11 model, fine-tuning was conducted to boost detection performance. The adjustments included:
 
-- Penyesuaian learning rate untuk mempercepat konvergensi model
-- Penambahan jumlah epoch (dari 40 menjadi 50)  
-- Penerapan partial layer freezing untuk mempertahankan fitur dasar dari model pre-trained  
+- Tuning the learning rate to accelerate model convergence  
+- Increasing the number of training epochs (from 40 to 50)  
+- Applying partial layer freezing to preserve foundational features from the pre-trained backbone  
 
-Pendekatan ini bertujuan untuk meningkatkan kemampuan model dalam mengenali objek kendaraan pada dataset yang telah diproses dan meningkatkan generalisasi terhadap distribusi data yang telah difilter
+This approach improves the model's ability to recognize vehicle classes on the preprocessed dataset and enhances generalization across the filtered data distribution.
 
-## Hasil Evaluasi
+## Evaluation Results
 
 | Model | Precision | Recall | mAP@50 | mAP@50-95 | FPS |
 |------|----------|--------|--------|-----------|-----|
-| YOLOv10 | 0,7637 | 0,8864 | 0,8894 | 0,5864 | 60,89 |
-| YOLOv11 | 0,7593 | 0,9232 | 0,8961 | 0,5903 | 59,43 |
-| YOLOv11 (Fine-Tuned) | 0,7479 | 0,9316 | 0,9032 | 0,5933 | 60,83 |
+| YOLOv10 | 0.7637 | 0.8864 | 0.8894 | 0.5864 | 60.89 |
+| YOLOv11 | 0.7593 | 0.9232 | 0.8961 | 0.5903 | 59.43 |
+| YOLOv11 (Fine-Tuned) | 0.7479 | 0.9316 | 0.9032 | 0.5933 | 60.83 |
 
-**Catatan Ringkasan Hasil Evaluasi**: 
-Model YOLOv11 (Fine-Tuned) memiliki hasil kualitas kinerja deteksi yang terbaik secara keseluruhan (nilai Recall, mAP@50, dan mAP@50-95 tertinggi). Sedangkan, model YOLOv10 memiliki hasil kecepatan inferensi yang tercepat (nilai FPS tertinggi di antara seluruh model). Hal ini menunjukkan adanya trade-off antara kualitas kinerja deteksi dengan kecepatan inferensi secara real-time 
+**Evaluation Summary:** 
+The **YOLOv11 (Fine-Tuned)** model achieved the highest overall detection quality (highest Recall, mAP@50, and mAP@50-95). Meanwhile, the **YOLOv10** model delivered the fastest inference speed (highest FPS among all tested models). These results highlight the trade-off between detection accuracy and real-time inference speed.
 
-## Contoh Hasil Deteksi
+## Sample Detection Results
 
-Sampel Gambar berikut menunjukkan hasil deteksi kendaraan menggunakan model YOLOv10, YOLOv11, dan YOLOv11 (fine-tuned dengan kesesuaian hiperparameter learning rate, epoch, serta partial layer freezing untuk meningkatkan performa), 
-dimana model berhasil mengidentifikasi objek mobil, bus, dan truk dengan bounding box.
+The sample image below illustrates vehicle detection results across YOLOv10, YOLOv11, and YOLOv11 (fine-tuned with adjusted learning rate, epochs, and partial layer freezing), accurately identifying cars, buses, and trucks with bounding boxes.
 
-![Hasil Deteksi](results/Sample_Detection.jpg)
+![Detection Results](results/Sample_Detection.jpg)
 
-## Log Pelatihan
+## Training Logs
 
-Berikut merupakan hasil pelatihan dari masing-masing model:
+Below are the training performance curves for each model:
 
 ### YOLOv10 Baseline
 ![YOLOv10](results/train10_results.png)
@@ -111,67 +111,62 @@ Berikut merupakan hasil pelatihan dari masing-masing model:
 ### YOLOv11 Fine-Tuned
 ![YOLOv11 FT](results/train11_finetuned_results.png)
 
-Note: Eksperimen dilakukan melalui beberapa skenario, yaitu baseline (YOLOv10 dan YOLOv11) serta fine-tuning pada YOLOv11 dengan penyesuaian hyperparameter seperti learning rate, jumlah epoch, dan layer freezing. Proses pelatihan menghasilkan kurva performa (loss, precision, recall, dan mAP) yang digunakan untuk menganalisis proses konvergensi model.
+**Note:** Experiments were run across multiple scenarios—baseline (YOLOv10 and YOLOv11) and fine-tuned YOLOv11 with adjusted hyperparameters (learning rate, epochs, and partial layer freezing). Training generated performance curves (loss, precision, recall, and mAP) used to analyze model convergence.
 
-## Temuan Utama
-- YOLOv11 memberikan kualitas kinerja deteksi lebih tinggi (Recall dan mAP)  
-- YOLOv10 memiliki kecepatan inferensi sedikit lebih tinggi (FPS)  
-- Proses fine-tuning meningkatkan performa YOLOv11  
+## Key Findings
+- YOLOv11 delivers stronger overall detection quality (higher Recall and mAP)  
+- YOLOv10 achieves slightly faster inference speed (higher FPS)  
+- Fine-tuning measurably improves YOLOv11 detection metrics  
 
-## Bobot Model
-Tersedia pada folder `/weights/`:
-- YOLOv10_baseline_best.pt   
-- YOLOv11_baseline_best.pt  
-- YOLOv11_finetuned_best.pt  
+## Model Weights
+Trained weights are available in the `/weights/` directory:
+- `YOLOv10_baseline_best.pt`   
+- `YOLOv11_baseline_best.pt`  
+- `YOLOv11_finetuned_best.pt`  
 
-## Setup Environment
+## Environment Setup
 
-Project ini telah diuji dengan konfigurasi berikut:
-- Python: 3.10  
-- OS: Windows  
-- GPU: NVIDIA GTX 1650 Ti (opsional)
+This project was tested using the following environment:
+- **Python:** 3.10  
+- **OS:** Windows  
+- **GPU:** NVIDIA GTX 1650 Ti (optional)
 
-**Catatan**:
-Project ini dikembangkan menggunakan versi library berikut:
-- ultralytics 8.4.33
-- torch 2.11.0
-- torchvision 0.26.0
-- numpy 2.2.6
-- opencv-python 4.13.0.92
-- matplotlib 3.10.8
-- PyYAML 6.0.3
+**Dependencies:**
+Developed with the following library versions:
+- `ultralytics` 8.4.33
+- `torch` 2.11.0
+- `torchvision` 0.26.0
+- `numpy` 2.2.6
+- `opencv-python` 4.13.0.92
+- `matplotlib` 3.10.8
+- `PyYAML` 6.0.3
 
-## Cara Menjalankan
+## How to Run
 
-Ikuti langkah berikut untuk menjalankan project:
+Follow these steps to run the project locally:
 
-1. Clone Repository
+1. **Clone the repository:**
 ```bash
-git clone https://github.com/Relll06HUB/Project-1-DL.git
+git clone https://github.com
 cd Project-1-DL
 ```
 
-2. Install dependensi:
-
+2. **Install dependencies:**
 ```bash
 pip install -r requirements.txt
-
 ```
 
-Alternatif (Opsional):
-
+Alternative (Optional):
 ```bash
 pip install ultralytics
 ```
 
-3. Menjalankan inferensi menggunakan command line:
-
+3. **Run inference via CLI:**
 ```bash
 yolo task=detect mode=predict model=weights/YOLOv11_finetuned_best.pt source=images/Test1.jpg
 ```
 
-4. Menjalankan inferensi menggunakan Python:
-
+4. **Run inference via Python:**
 ```python
 from ultralytics import YOLO
 
@@ -179,45 +174,48 @@ model = YOLO("weights/YOLOv11_finetuned_best.pt")
 results = model("images/Test1.jpg", save=True)
 ```
 
-**Catatan:**
-- Hasil deteksi akan otomatis tersimpan pada folder `runs/detect/`
-- File input source dapat diganti dengan gambar lain sesuai kenyamanan dan kebutuhan 
-- Untuk jalankan inferensi dengan beberapa gambar sekaligus, bisa gunakan algoritma list seperti yang dilampirkan berikut ini:
+**Notes:**
+- Detection outputs are automatically saved inside the `runs/detect/` folder.
+- You can replace the input `source` path with any custom image.
+- To run batch inference on multiple images at once, pass a list of file paths:
 
 ```python
 results = model(["images/Test1.jpg", "images/Test2.jpg"], save=True) 
 ```
 
 ## License
-- Project ini dibuat untuk keperluan akademik dan tidak ditujukan untuk penggunaan komersial
-- Dataset mengikuti lisensi dari sumber aslinya (Kaggle)
+- This project was developed for academic purposes and is not intended for commercial use.
+- The dataset follows the license terms of its original source (Kaggle).
 
-## Video Demo
+## Demo Video
 
-Video demonstrasi proses inferensi model dapat diakses melalui link berikut:
+Watch a demonstration of the model inference pipeline here:  
+[View Demo Video on Google Drive](https://google.com)
 
-https://drive.google.com/file/d/1B6ovYBIXKnmHFt-tLvoJlu0L06dlSvG9/view?usp=sharing
+## Project Structure
 
-## Struktur Project
+```text
 project/
-│── weights/            # Model hasil pelatihan
+│── weights/            # Trained model weights
 │   ├── YOLOv10_baseline_best.pt
 │   ├── YOLOv11_baseline_best.pt
 │   └── YOLOv11_finetuned_best.pt
 │
-│── results/		# Contoh Hasil Deteksi & Log Pelatihan
+│── results/            # Sample detections & training logs
 │   ├── Sample_Detection.jpg
 │   ├── train10_results.png
 │   ├── train11_results.png
 │   └── train11_finetuned_results.png
 │
-│── runs/               # Output Pelatihan (tidak disertakan)
-│── Project1.ipynb      # Notebook utama
-│── data.yaml		# Konfigurasi dataset
-│── requirements.txt    # Konfigurasi library proses percobaan      
-│── README.md		# Dokumentasi seluruh project
+│── runs/               # Training & inference outputs (excluded from repo)
+│── Project1.ipynb      # Main Jupyter Notebook
+│── data.yaml           # Dataset configuration
+│── requirements.txt    # Python dependencies
+│── README.md           # Project documentation
+```
 
-**Catatan**:
-- Folder `results/` berisi contoh hasil deteksi dan log pelatihan
-- Folder `runs/` merupakan output otomatis dari proses training dan inferensi
-- Jika berhasil, hasil akan tersimpan di folder `runs/detect/` dan dapat dilihat secara visual
+**Notes:**
+- The `results/` directory contains sample detection visualizations and training metric plots.
+- The `runs/` directory is auto-generated during training and inference runs.
+- Successful inference outputs are saved in `runs/detect/` for visual inspection.
+
